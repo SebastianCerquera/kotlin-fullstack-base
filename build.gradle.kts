@@ -11,6 +11,8 @@ plugins {
     id("io.spring.dependency-management") version System.getProperty("dependencyManagementPluginVersion")
     id("org.springframework.boot") version System.getProperty("springBootVersion")
     kotlin("plugin.spring") version kotlinVersion
+
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9"
 }
 
 version = "1.0.0-SNAPSHOT"
@@ -77,7 +79,11 @@ kotlin {
     }
     sourceSets {
         val commonMain by getting {
-            dependencies {}
+            dependencies {
+                implementation("dev.fritz2:core:1.0-RC4")
+                implementation("dev.fritz2:lenses-annotation-processor:1.0-RC4")
+                //create("kspCommonMainMetadata", )
+            }
             kotlin.srcDir("build/generated-src/common")
         }
         val commonTest by getting {
@@ -113,6 +119,7 @@ kotlin {
             resources.srcDir(webDir)
             dependencies {
                 implementation("dev.fritz2:core:1.0-RC4")
+                //implementation("dev.fritz2:lenses-annotation-processor:1.0-RC4")
             }
             kotlin.srcDir("build/generated-src/frontend")
         }
@@ -126,6 +133,7 @@ kotlin {
 
 afterEvaluate {
     tasks {
+        //create("kspCommonMainMetadata", "dev.fritz2:lenses-annotation-processor:1.0-RC4")
         create("frontendArchive", Jar::class).apply {
             dependsOn("frontendBrowserProductionWebpack")
             group = "package"
@@ -178,3 +186,12 @@ afterEvaluate {
         }
     }
 }
+
+
+dependencies {
+    add("kspCommonMainMetadata", "dev.fritz2:lenses-annotation-processor:1.0-RC4")
+}
+kotlin.sourceSets.commonMain { kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin") }
+//tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().all {
+//    if (name != "kspCommonMainKotlinMetadata") dependsOn("kspCommonMainKotlinMetadata")
+//}
