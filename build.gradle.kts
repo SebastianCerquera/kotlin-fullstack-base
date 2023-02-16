@@ -23,6 +23,10 @@ repositories {
     mavenLocal()
 }
 
+dependencies {
+    add("kspCommonMainMetadata", "dev.fritz2:lenses-annotation-processor:1.0-RC4")
+}
+
 // Versions
 val kotlinVersion: String by System.getProperties()
 val coroutinesVersion: String by project
@@ -84,7 +88,7 @@ kotlin {
                 implementation("dev.fritz2:lenses-annotation-processor:1.0-RC4")
                 //create("kspCommonMainMetadata", )
             }
-            kotlin.srcDir("build/generated-src/common")
+            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
         }
         val commonTest by getting {
             dependencies {
@@ -119,9 +123,9 @@ kotlin {
             resources.srcDir(webDir)
             dependencies {
                 implementation("dev.fritz2:core:1.0-RC4")
-                //implementation("dev.fritz2:lenses-annotation-processor:1.0-RC4")
+                implementation("dev.fritz2:lenses-annotation-processor:1.0-RC4")
             }
-            kotlin.srcDir("build/generated-src/frontend")
+            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
         }
         val frontendTest by getting {
             dependencies {
@@ -133,7 +137,6 @@ kotlin {
 
 afterEvaluate {
     tasks {
-        //create("kspCommonMainMetadata", "dev.fritz2:lenses-annotation-processor:1.0-RC4")
         create("frontendArchive", Jar::class).apply {
             dependsOn("frontendBrowserProductionWebpack")
             group = "package"
@@ -188,10 +191,3 @@ afterEvaluate {
 }
 
 
-dependencies {
-    add("kspCommonMainMetadata", "dev.fritz2:lenses-annotation-processor:1.0-RC4")
-}
-kotlin.sourceSets.commonMain { kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin") }
-//tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().all {
-//    if (name != "kspCommonMainKotlinMetadata") dependsOn("kspCommonMainKotlinMetadata")
-//}
