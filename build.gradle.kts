@@ -123,7 +123,7 @@ kotlin {
             resources.srcDir(webDir)
             dependencies {
                 implementation("dev.fritz2:core:1.0-RC4")
-                implementation("dev.fritz2:lenses-annotation-processor:1.0-RC4")
+                //implementation("dev.fritz2:lenses-annotation-processor:1.0-RC4")
             }
             kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
         }
