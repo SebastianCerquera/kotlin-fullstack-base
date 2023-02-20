@@ -41,33 +41,3 @@ fun RenderContext.visitorsDetails(
         }
     }
 }
-
-fun RenderContext.visitorsTable() {
-    div("col-12") {
-        div("card") {
-            h5("card-header") {
-                +"List of impressions"
-            }
-            div("card-body") {
-                table("table") {
-                    thead("thead-dark") {
-                        th { +"OS" }
-                        th { +"User Agent" }
-                        th { +"Screen size" }
-                        th { +"Time zone" }
-                    }
-                    tbody {
-                        BrowserTracker.ScenarioListStore.data.renderEach { scenario ->
-                            tr {
-                                td { +scenario.browser!!.os!! }
-                                td { +scenario.browser!!.userAgent!! }
-                                td { +scenario.browser!!.screenSize!! }
-                                td { +scenario.locale!!.timeZone!! }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
