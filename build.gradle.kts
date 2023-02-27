@@ -86,6 +86,7 @@ kotlin {
             dependencies {
                 implementation("dev.fritz2:core:1.0-RC4")
                 implementation("dev.fritz2:lenses-annotation-processor:1.0-RC4")
+                implementation("org.springframework.boot:spring-boot-starter-data-jpa")
                 //create("kspCommonMainMetadata", )
             }
             kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
@@ -103,11 +104,10 @@ kotlin {
                 implementation("org.springframework.boot:spring-boot-starter")
                 implementation("org.springframework.boot:spring-boot-devtools")
                 implementation("org.springframework.boot:spring-boot-starter-webflux")
-                implementation("org.springframework.boot:spring-boot-starter-security")
+//                implementation("org.springframework.boot:spring-boot-starter-security")
                 implementation("org.springframework.boot:spring-boot-starter-data-jpa")
                 implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
                 implementation("org.postgresql:r2dbc-postgresql:$r2dbcPostgresqlVersion")
-                runtimeOnly("com.h2database:h2")
                 implementation("pl.treksoft:r2dbc-e4k:$e4kVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:$coroutinesVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:$coroutinesVersion")

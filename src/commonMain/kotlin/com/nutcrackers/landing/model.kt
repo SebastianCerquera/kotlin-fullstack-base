@@ -4,13 +4,13 @@ import dev.fritz2.core.Lenses
 
 @Lenses
 data class Browser(
-    val screenSize: String? = null,
-    val screenColor: Int? = null,
-    val userAgent: String? = null,
-    val concurrency: Int? = null,
-    val os: String? = null,
-    val plugins: String? = null,
-    val jsFonts: String? = null
+    val screenSize: String?,
+    val screenColor: Int?,
+    val userAgent: String?,
+    val concurrency: Int?,
+    val os: String?,
+    val plugins: String?,
+    val jsFonts: String?
 ) {
     companion object
 }
