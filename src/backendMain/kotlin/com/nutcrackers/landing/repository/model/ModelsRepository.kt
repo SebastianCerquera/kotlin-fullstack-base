@@ -2,10 +2,14 @@ import com.nutcrackers.landing.Browser
 import com.nutcrackers.landing.Locale
 import com.nutcrackers.landing.Session
 import jakarta.persistence.*
+import lombok.AllArgsConstructor
+import lombok.NoArgsConstructor
 
 
-@Entity
-@Table(name = "browser")
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name = "browser")
 data class BrowserRepositoryModel(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,8 +20,9 @@ data class BrowserRepositoryModel(
 )
 
 
-@Entity
-@Table(name="session")
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name="session")
 data class SessionRepositoryModel(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +33,9 @@ data class SessionRepositoryModel(
 
 )
 
-@Entity
-@Table(name="locale")
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name="locale")
 data class LocaleRepositoryModel(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

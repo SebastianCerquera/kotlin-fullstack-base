@@ -87,6 +87,8 @@ kotlin {
                 implementation("dev.fritz2:core:1.0-RC4")
                 implementation("dev.fritz2:lenses-annotation-processor:1.0-RC4")
                 implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+                implementation("org.hibernate:hibernate-core:6.2.0.CR2")
+                compileOnly("org.projectlombok:lombok:1.18.26")
                 //create("kspCommonMainMetadata", )
             }
             kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
@@ -101,16 +103,34 @@ kotlin {
             dependencies {
                 implementation(kotlin("stdlib-jdk7"))
                 implementation(kotlin("reflect"))
-                implementation("org.springframework.boot:spring-boot-starter")
-                implementation("org.springframework.boot:spring-boot-devtools")
-                implementation("org.springframework.boot:spring-boot-starter-webflux")
-//                implementation("org.springframework.boot:spring-boot-starter-security")
+                //web
+                implementation("org.springframework.boot:spring-boot-starter-web")
+
+                //web
+                implementation("org.springframework.boot:spring-boot-starter-validation")
+
+                //kotlin
+                implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+                implementation("org.jetbrains.kotlin:kotlin-reflect")
+                implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+                //validator
+                implementation("org.springframework.boot:spring-boot-starter-validation")
+
+                //logging
+                implementation("io.github.microutils:kotlin-logging-jvm:2.0.11")
+
+
+                //db
                 implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-                implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
-                implementation("org.postgresql:r2dbc-postgresql:$r2dbcPostgresqlVersion")
-                implementation("pl.treksoft:r2dbc-e4k:$e4kVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:$coroutinesVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:$coroutinesVersion")
+                runtimeOnly("com.h2database:h2")
+//    runtimeOnly("org.postgresql:postgresql")
+
+                // https://mvnrepository.com/artifact/org.projectlombok/lombok
+                compileOnly("org.projectlombok:lombok:1.18.26")
+
+
+
             }
         }
         val backendTest by getting {
